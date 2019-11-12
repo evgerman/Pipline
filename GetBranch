@@ -1,0 +1,16 @@
+node() {
+    stage("checkout") {
+
+        def branchName = sh(returnStdout: true, script: 'curl --header "PRIVATE-TOKEN: wNSfwSbUmyfLpsqNfowV" http://gitlab.zp.portal.cbr.ru/api/v4/projects/69GermanEE%2Ftest/repository/branches')
+        print branchName
+        println "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        def jsonString = '{"name":"katone","age":5}'
+        def jsonObj = readJSON text: branchName
+
+//        assert jsonObj['name'] == 'katone'  // this is a comparison.  It returns true
+        def branch = jsonObj.name
+        print branch
+        print branch [1]
+//        sh "echo ${jsonObj.age}"
+    }
+}
